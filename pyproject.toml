@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-prompt-risk-env = "server.app:main"
+server = "server.app:main"
 
 [tool.openenv]
 name = "prompt-risk-env"
