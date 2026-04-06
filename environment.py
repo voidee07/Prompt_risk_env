@@ -1,4 +1,4 @@
-import random
+
 from typing import Optional
 from models import Observation, Action, StepResult
 
@@ -366,7 +366,7 @@ class PromptRiskEnvironment:
                 done=True,
                 info={
                     "steps_taken": self.steps_taken,
-                    "ground_truth": ground_truth
+                    "message": "Episode complete"
                 }
             )
 
@@ -380,7 +380,7 @@ class PromptRiskEnvironment:
             ),
             reward=reward,
             done=False,
-            info={"ground_truth": ground_truth}
+            info={"step": self.current_index}
         )
 
     def state(self) -> dict:

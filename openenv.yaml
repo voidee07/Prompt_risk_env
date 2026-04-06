@@ -5,25 +5,32 @@ description: >
   sent to LLMs for risk level, sensitive data types, and recommended 
   action. Models a real enterprise DLP (Data Loss Prevention) use case.
 
+ 
+tags:
+  - openenv
+  - dlp
+  - classification
+  - enterprise-ai
+
 author: Voidee07
 
 
 entry_point: server/app.py
 
 tasks:
-  - id: easy
+  - id: 1
     name: Easy - Obvious PII Detection
     description: Classify prompts containing clear, explicit PII like SSNs, credit cards, passports
     max_steps: 12
     difficulty: easy
 
-  - id: medium
+  - id: 2
     name: Medium - Multi-label Classification  
     description: Classify prompts containing multiple sensitive data types simultaneously
     max_steps: 16
     difficulty: medium
 
-  - id: hard
+  - id: 3
     name: Hard - Subtle Confidentiality Breaches
     description: Detect confidential business information without obvious PII keywords
     max_steps: 13
@@ -59,6 +66,7 @@ action_space:
       enum: [allow, warn, block, escalate]
 
 reward:
+  type: float
   range: [0.0, 1.0]
   description: >
     Composite score: 40% risk level accuracy, 40% data types F1 score,
@@ -70,4 +78,4 @@ endpoints:
   state: GET /state
 
 docker:
-  port: 8000
+  port: 7860

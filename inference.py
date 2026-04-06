@@ -8,9 +8,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ─── Config ───────────────────────────────────────────────────────────────────
-API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
-MODEL_NAME   = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-72B-Instruct")
-HF_TOKEN     = os.getenv("HF_TOKEN", "")
+API_BASE_URL = os.getenv("APIURL", "https://router.huggingface.co/v1")
+MODEL_NAME   = os.getenv("MODELID", "Qwen/Qwen2.5-72B-Instruct")
+HF_TOKEN     = os.getenv("HFTOKEN", "")
 ENV_URL      = os.getenv("ENV_URL", "http://localhost:8000")
 
 TASKS             = [1, 2, 3]
@@ -159,12 +159,18 @@ def run_task(task_id: int) -> float:
             steps_taken = step
 
             # Compact action string for the log
+            # action_str = (
+            #     f"risk={classification['risk_level']},"
+            #     f"types={classification['data_types']},"
+            #     f"action={classification['recommended_action']}"
+            # )
+              
+            types_str = "|".join(classification['data_types']) or "none"
             action_str = (
-                f"risk={classification['risk_level']},"
-                f"types={classification['data_types']},"
-                f"action={classification['recommended_action']}"
-            )
-
+                   f"risk={classification['risk_level']} "
+                   f"types={types_str} "
+                   f"action={classification['recommended_action']}"
+                    )
             log_step(
                 step=step,
                 action=action_str,

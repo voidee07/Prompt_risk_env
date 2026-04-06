@@ -1,6 +1,6 @@
 
 from pydantic import BaseModel
-from typing import List, Optional, Literal
+from typing import List, Optional, Literal, get_args 
 
 # Valid labels the agent must choose from
 VALID_DATA_TYPES = [
