@@ -1,0 +1,23 @@
+[project]
+name = "prompt-risk-env"
+version = "1.0.0"
+description = "OpenEnv environment for classifying risk in employee LLM prompts"
+requires-python = ">=3.12"
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "openai",
+    "pydantic",
+    "openenv-core",
+    "python-dotenv",
+    "requests",
+]
+
+[project.scripts]
+prompt-risk-env = "server.app:main"
+
+[tool.openenv]
+name = "prompt-risk-env"
+version = "1.0.0"
+entry_point = "server.app:app"
